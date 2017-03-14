@@ -12,4 +12,15 @@ public class ServerApplication {
 	public static void main(String[] args) {
 	    new SpringApplicationBuilder(ServerApplication.class).web(true).run(args);
 	}
+	
+//	@Resource
+//	private Sender sender;
+//
+//    @Override
+//    public void run(String... arg0) throws Exception {
+//        while(true){
+//            sender.send();
+//            sender.sendHi();
+//        }
+//    }
 }

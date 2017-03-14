@@ -2,6 +2,7 @@ package com.example;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -11,8 +12,12 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 public class ApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
+    @Autowired
+    private Sender sender;
+    
+    @Test
+    public void hello() throws Exception {
+        sender.send();
+    }
 
 }

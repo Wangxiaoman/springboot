@@ -1,5 +1,7 @@
 package com.example;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -14,11 +16,12 @@ public class ComputeController {
     private final Logger logger = Logger.getLogger(getClass());
     @Autowired
     private DiscoveryClient client;
+    @Resource
+    private ComputeClient computeClient;
     @RequestMapping(value = "/add" ,method = RequestMethod.GET)
     public Integer add(@RequestParam Integer a, @RequestParam Integer b) {
         ServiceInstance instance = client.getLocalServiceInstance();
-        Integer r = a + b;
-        logger.info("/add, host:" + instance.getHost() + ", service_id:" + instance.getServiceId() + ", result:" + r);
-        return r;
+        logger.info("/add, host:" + instance.getHost() + ", service_id:" + instance.getServiceId());
+        return computeClient.add(a, b);
     }
 }
